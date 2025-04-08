@@ -22,7 +22,7 @@ env:
 jobs:
   prepare:
     name: Prepare
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     if: ${{ github.event.head_commit.message != 'Update hash file' }}
 
     outputs:
@@ -38,7 +38,7 @@ jobs:
           echo "hash_content=$content" >> "$GITHUB_OUTPUT"
   check:
     name: Check Should Rebuild
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     needs: prepare
     outputs:
       canceled: ${{ steps.use_content.outputs.canceled }}
@@ -69,7 +69,7 @@ jobs:
 
   build:
     name: Build artifact
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     needs: check
     if: ${{needs.check.outputs.canceled != 'true'}}
 
@@ -127,7 +127,7 @@ jobs:
 
   deploy:
     name: Deploy artifact
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     needs: build
     steps:
       # - name: Download artifact
@@ -206,7 +206,7 @@ jobs:
           ${{ secrets.AFTER_DEPLOY_SCRIPT }}
   store:
     name: Store artifact commit version
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     needs: [deploy, build]
     steps:
       - name: Checkout
