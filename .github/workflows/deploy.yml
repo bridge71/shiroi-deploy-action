@@ -173,7 +173,7 @@ jobs:
             export NVM_DIR=~/.nvm #定义.nvm的安装目录，否则终端运行时明明安装了但找不到命令
             source ~/.nvm/nvm.sh #识别nvm命令，否则可能会报command not found
             source $HOME/.bashrc 
-            basedir=$HOME/mx-space/shiro #填写你自己希望的路径，因为我的后端文件在mx-space下，所以我希望我的shiro也在mx-space文件夹下，方便管理
+            basedir=$HOME/shiro #填写你自己希望的路径，因为我的后端文件在mx-space下，所以我希望我的shiro也在mx-space文件夹下，方便管理
             workdir=$basedir/${{ github.run_number }}
             mkdir -p $workdir
             mkdir -p $basedir/.cache
